@@ -44,21 +44,8 @@ class Line:
     def draw(self, canvas, fill_color):
         canvas.create_line(self.p1.x, self.p1.y, self.p2.x, self.p2.y, fill=fill_color, width=2)
     
-def main():
-    win = Window(800, 600)
-  
-    
-    po1= Point(0,0)
-    po2= Point(253,253)
-    po3= Point(364,153)
-    line1= Line(po1,po2)
-    line2= Line(po2,po3)
-    win.draw_line(line1,"Green")
-    win.draw_line(line2,"Brown")
-
-    win.wait_for_close()
 
 
-if __name__ == "__main__": 
-    main()
-        
+
+
+
