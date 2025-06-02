@@ -43,3 +43,23 @@ class Cell:
             po2=Point(self.__x2, self.__y2)
             li=Line(po1, po2)
             self.__win.draw_line(li, "Black")
+
+    def get_center_point(self):
+        center_x=(self.__x1+self.__x2)/2
+        center_y=(self.__y1+self.__y2)/2
+        return Point(center_x, center_y)
+
+    def draw_move(self, to_cell, undo=False):
+        color="gray"
+        if not undo:
+            color="red"
+        
+        po1=self.get_center_point()
+        po2=to_cell.get_center_point()
+
+        li=Line(po1, po2)
+        self.__win.draw_line(li, color)
+
+        
+
+        
