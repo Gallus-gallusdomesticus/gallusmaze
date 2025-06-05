@@ -14,43 +14,40 @@ class Cell:
         self.__y2 = -1
         self.__win= win
     
+    def _draw_wall(self, po1, po2, has_wall):
+        li=Line(po1,po2)
+        if self.__win is not None:
+            if has_wall:
+                self.__win.draw_line(li, "Black")
+            else:
+                self.__win.draw_line(li, "#d9d9d9")
+
+
     def draw(self, new_x1, new_y1, new_x2, new_y2):
         self.__x1=min(new_x1, new_x2)
         self.__x2=max(new_x1, new_x2)
         self.__y1=max(new_y1, new_y2)
         self.__y2=min(new_y1, new_y2)
         
-        if self.has_left_wall:
-            po1=Point(self.__x1, self.__y1)
-            po2=Point(self.__x1, self.__y2)
-            li=Line(po1, po2)
-            if self.__win==None:
-                return
-            self.__win.draw_line(li, "Black")
         
-        if self.has_bottom_wall:
-            po1=Point(self.__x1, self.__y1)
-            po2=Point(self.__x2, self.__y1)
-            li=Line(po1, po2)
-            if self.__win==None:
-                return
-            self.__win.draw_line(li, "Black")
-        
-        if self.has_right_wall:
-            po1=Point(self.__x2, self.__y1)
-            po2=Point(self.__x2, self.__y2)
-            li=Line(po1, po2)
-            if self.__win==None:
-                return
-            self.__win.draw_line(li, "Black")
-        
-        if self.has_top_wall:
-            po1=Point(self.__x1, self.__y2)
-            po2=Point(self.__x2, self.__y2)
-            li=Line(po1, po2)
-            if self.__win==None:
-                return
-            self.__win.draw_line(li, "Black")
+        po1=Point(self.__x1, self.__y1)
+        po2=Point(self.__x1, self.__y2)
+        self._draw_wall(po1,po2,self.has_left_wall)
+              
+        po1=Point(self.__x1, self.__y1)
+        po2=Point(self.__x2, self.__y1)
+        self._draw_wall(po1,po2,self.has_bottom_wall)
+
+        po1=Point(self.__x2, self.__y1)
+        po2=Point(self.__x2, self.__y2)
+        self._draw_wall(po1,po2,self.has_right_wall)  
+
+        po1=Point(self.__x1, self.__y2)
+        po2=Point(self.__x2, self.__y2)
+        self._draw_wall(po1,po2,self.has_top_wall)
+            
+                
+            
 
     def get_center_point(self):
         center_x=(self.__x1+self.__x2)/2
