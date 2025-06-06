@@ -13,6 +13,8 @@ class Cell:
         self.__y1 = -1
         self.__y2 = -1
         self.__win= win
+
+        self.visited=False
     
     def _draw_wall(self, po1, po2, has_wall):
         li=Line(po1,po2)
@@ -67,6 +69,9 @@ class Cell:
         if self.__win==None:
             return
         self.__win.draw_line(li, color)
+
+    
+        
 
         
 
